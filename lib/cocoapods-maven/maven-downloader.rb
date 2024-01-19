@@ -55,7 +55,8 @@ module Pod
           'repository' => options[:repo],
           'maven.groupId' => options[:group],
           'maven.artifactId' => options[:artifact],
-          'maven.baseVersion' => options[:version],
+          # maven don't allow '/' in version, so we replace it with '_' automatically
+          'maven.baseVersion' => options[:version].gsub('/', '_'),
           'maven.extension' => options[:type],
           'prerelease' => false
         }
@@ -63,7 +64,7 @@ module Pod
 
         debug_puts("uri: #{uri}")
         res = Net::HTTP.get_response(uri)
-        raise DownloaderError, 'Verification checksum was incorrect, ' if res.is_a?(Net::HTTPError) || res.body.to_s.empty?
+        raise DownloaderError, 'Search failed!' if res.is_a?(Net::HTTPError) || res.body.to_s.empty?
         debug_puts "res.body: #{res.body.to_s}"
 
         parsed_model = JSON.parse(res.body, object_class: OpenStruct)
