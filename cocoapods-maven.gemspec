@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['hanley.lei@gmail.com']
   spec.description   = %q{A short description of cocoapods-maven.}
   spec.summary       = %q{A longer description of cocoapods-maven.}
-  spec.homepage      = 'https://github.com/EXAMPLE/cocoapods-maven'
+  spec.homepage      = 'https://github.com/hanleylee/cocoapods-maven'
   spec.license       = 'MIT'
 
   spec.files         = Dir['lib/**/*']
