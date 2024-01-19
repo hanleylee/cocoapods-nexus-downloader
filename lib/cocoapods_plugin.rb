@@ -1,1 +1,1 @@
-require 'cocoapods-maven/command'
+require 'cocoapods-maven'
