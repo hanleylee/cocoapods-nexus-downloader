@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = CocoapodsMaven::VERSION
   spec.authors       = ['Hanley Lee']
   spec.email         = ['hanley.lei@gmail.com']
-  spec.description   = %q{A short description of cocoapods-maven.}
-  spec.summary       = %q{A longer description of cocoapods-maven.}
+  spec.description   = %q{Host the pod's framework file on Maven and download it using ':maven'.}
+  spec.summary       = %q{A CocoaPods plugin that enables referencing a pod using ':maven' and downloading it from Maven.}
   spec.homepage      = 'https://github.com/hanleylee/cocoapods-maven'
   spec.license       = 'MIT'
 
