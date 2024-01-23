@@ -1,5 +1,5 @@
 require 'cocoapods-downloader'
-require 'cocoapods-maven/maven-downloader'
+require 'cocoapods-nexus-downloader/nexus-downloader'
 
 module Pod
   module Downloader
@@ -9,7 +9,7 @@ module Pod
 
     def self.downloader_class_by_key
       original = self.real_downloader_class_by_key
-      original[:maven] = Maven
+      original[:nexus] = NexusDownloader
       original
     end
 

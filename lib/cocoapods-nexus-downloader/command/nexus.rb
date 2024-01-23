@@ -17,11 +17,11 @@ module Pod
     # @todo Create a PR to add your plugin to CocoaPods/cocoapods.org
     #       in the `plugins.json` file, once your plugin is released.
     #
-    class Maven < Command
-      self.summary = 'Short description of cocoapods-maven.'
+    class Nexus < Command
+      self.summary = 'Short description of cocoapods-nexus.'
 
       self.description = <<-DESC
-        Longer description of cocoapods-maven.
+        Longer description of cocoapods-Nexus.
       DESC
 
       self.arguments = 'NAME'
@@ -37,7 +37,7 @@ module Pod
       end
 
       def run
-        UI.puts "Add your implementation for the cocoapods-maven plugin in #{__FILE__}"
+        UI.puts "Add your implementation for the cocoapods-nexus plugin in #{__FILE__}"
       end
     end
   end

@@ -7,7 +7,7 @@ require 'json'
 module Pod
   module Downloader
 
-    class Maven < Base
+    class NexusDownloader < Base
       def self.options
         [:repo, :group, :artifact, :version, :type, :md5, :sha1,]
       end
@@ -19,7 +19,7 @@ module Pod
       private
 
       executable :curl
-      executable :mvn
+      # executable :mvn
       executable :unzip
       executable :tar
       executable :hdiutil
@@ -30,7 +30,7 @@ module Pod
       def self.preprocess_options(options)
 
         debug_puts "preprocess_options: #{options}"
-        artifact_item = self.request_artifact(options[:maven], options)
+        artifact_item = self.request_artifact(options[:nexus], options)
         debug_puts artifact_item
         md5Val = artifact_item.checksum.md5
 
@@ -225,7 +225,7 @@ module Pod
 
       def download_file(download_path)
         debug_puts "hl: download_file: #{download_path}"
-        artifact_item = Maven.request_artifact(url, options)
+        artifact_item = NexusDownloader.request_artifact(url, options)
         source_url = artifact_item.downloadUrl
         parameters = ['-f', '-L', '-o', download_path, source_url, '--create-dirs', '--netrc-optional', '--retry', '2']
         parameters << user_agent_argument if headers.nil? ||

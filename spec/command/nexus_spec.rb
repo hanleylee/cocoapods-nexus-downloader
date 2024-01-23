@@ -1,10 +1,10 @@
 require File.expand_path('../../spec_helper', __FILE__)
 
 module Pod
-  describe Command::Maven do
+  describe Command::Nexus do
     describe 'CLAide' do
       it 'registers it self' do
-        Command.parse(%w{ maven }).should.be.instance_of Command::Maven
+        Command.parse(%w{ Nexus }).should.be.instance_of Command::Nexus
       end
     end
   end

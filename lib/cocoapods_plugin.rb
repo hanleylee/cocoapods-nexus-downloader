@@ -1,1 +1,1 @@
-require 'cocoapods-maven'
+require 'cocoapods-nexus-downloader'
