@@ -29,9 +29,9 @@ module Pod
 
       def self.preprocess_options(options)
 
-        debug_puts "preprocess_options: #{options}"
+        CocoapodsNexusDownloader.debug_puts "preprocess_options: #{options}"
         artifact_item = self.request_artifact(options[:nexus], options)
-        debug_puts artifact_item
+        CocoapodsNexusDownloader.debug_puts artifact_item
         md5Val = artifact_item.checksum.md5
 
         if options.key?(:md5)
@@ -62,14 +62,14 @@ module Pod
         }
         uri.query = URI.encode_www_form(params)
 
-        debug_puts("uri: #{uri}")
+        CocoapodsNexusDownloader.debug_puts("uri: #{uri}")
         res = Net::HTTP.get_response(uri)
         raise DownloaderError, 'Search failed!' if res.is_a?(Net::HTTPError) || res.body.to_s.empty?
-        debug_puts "res.body: #{res.body.to_s}"
+        CocoapodsNexusDownloader.debug_puts "res.body: #{res.body.to_s}"
 
         parsed_model = JSON.parse(res.body, object_class: OpenStruct)
         raise DownloaderError, "Can't find matched artifact!" if parsed_model.items.empty?
-        debug_puts "aaa3: #{parsed_model.items.first}"
+        CocoapodsNexusDownloader.debug_puts "aaa3: #{parsed_model.items.first}"
         parsed_model.items.to_a.first
 
       end
@@ -224,7 +224,7 @@ module Pod
       end
 
       def download_file(download_path)
-        debug_puts "hl: download_file: #{download_path}"
+        CocoapodsNexusDownloader.debug_puts "hl: download_file: #{download_path}"
         artifact_item = NexusDownloader.request_artifact(url, options)
         source_url = artifact_item.downloadUrl
         parameters = ['-f', '-L', '-o', download_path, source_url, '--create-dirs', '--netrc-optional', '--retry', '2']
@@ -238,7 +238,7 @@ module Pod
           end
         end
 
-        debug_puts "curl parameters: #{parameters}"
+        CocoapodsNexusDownloader.debug_puts "curl parameters: #{parameters}"
         curl! parameters
       end
 
@@ -247,7 +247,7 @@ module Pod
       # @return [String] cURL command -A flag and User-Agent.
       #
       def user_agent_argument
-        debug_puts "1"
+        CocoapodsNexusDownloader.debug_puts "1"
         "-A '#{Http.user_agent_string}'"
       end
 
